@@ -6,4 +6,7 @@ class User < ApplicationRecord
                     uniqueness: { case_sensitive: false }
   has_secure_password
   validates :password, presence: true, length: { maximum: 20 }
+
+  # パスワードが空のままでも更新できるようにする
+  #validates :password, presence: true, length: { minimum: 6 }, allow_nil: true
 end
