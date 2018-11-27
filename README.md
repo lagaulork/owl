@@ -1,6 +1,6 @@
-' セルにデータを格納
-Cells(i, 1).Formula = "=IF(RC[1]=" & Chr(34) & Chr(34) & "," & Chr(34) & Chr(34) & ",IF(COUNTIF(RC[1]," & Chr(34) & "z_*" & Chr(34) & ")," & Chr(34) & "○" & Chr(34) & "," & Chr(34) & "-" & Chr(34) & "))"
-
-Cells(i, 1).Formula = "=IF(RC[1]=" & Chr(34) & Chr(34) & "," & Chr(34) & Chr(34) & ",IF(NOT(COUNTIF(RC[1]," & Chr(34) & "z_*" & Chr(34) & "))," & Chr(34) & "○" & Chr(34) & "," & Chr(34) & "-" & Chr(34) & "))"
-            
-select replace(Sort, 1, '-') from HELI_IT_Doc
+select 
+	CASE WHEN Sort IS NOT NULL THEN CAST(a.Sort as VARCHAR(10))
+	WHEN Name IS NOT NULL THEN a.Name
+	WHEN Label_ja IS NOT NULL THEN a.Label_ja
+	ELSE '-' END as snl
+from HELI_IT_Doc as a
